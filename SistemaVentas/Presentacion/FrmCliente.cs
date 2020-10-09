@@ -39,6 +39,8 @@ namespace SistemaVentas.Presentacion
                     lblNoSeEncontraronDatos.Visible = true;
                 }
 
+                MostrarGuardarCancelar(false);
+
             }
 
 
@@ -56,6 +58,25 @@ namespace SistemaVentas.Presentacion
         private void Nuevo_Click(object sender, EventArgs e)
         {
 
+           
+        }
+
+
+        public void MostrarGuardarCancelar(bool b)
+        {
+            btnGuardar.Visible = b;
+            btnCancelar.Visible = b;
+            btnNuevo.Visible = !b;
+            btnEditar.Visible = !b;
+            btnEliminar.Visible = !b;
+
+            dgvClientes.Enabled = !b;
+
+
+        }
+
+        private void btnGuardar_Click(object sender, EventArgs e)
+        {
             try
             {
                 Cliente cliente = new Cliente();
@@ -77,8 +98,38 @@ namespace SistemaVentas.Presentacion
                 MessageBox.Show(ex.Message + ex.StackTrace);
             }
         }
-    }
-        
-       
+
+        private void btnNuevo_Click(object sender, EventArgs e)
+        {
+            MostrarGuardarCancelar(true);
+            txtId.Text = "";
+            txtNombre.Text = "";
+            txtApellido.Text = "";
+            txtDni.Text = "";
+            txtTelefono.Text = ""; 
+            txtDomicilio.Text = "";
+            
+        }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            MostrarGuardarCancelar(true);
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            MostrarGuardarCancelar(false);
+        }
+
+        private void dgvClientes_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            dgvClientes.CurrentRow.Cells[1].Value.ToString();
+            txtNombre.Text = dgvClientes.CurrentRow.Cells[2].Value.ToString();
+            txtApellido.Text = dgvClientes.CurrentRow.Cells[3].Value.ToString();
+            txtTelefono.Text = dgvClientes.CurrentRow.Cells[4].Value.ToString();
+            txtDni.Text = dgvClientes.CurrentRow.Cells[5].Value.ToString();
+            txtDomicilio.Text = dgvClientes.CurrentRow.Cells[6].Value.ToString();
+        }
+    }         
     
 }
