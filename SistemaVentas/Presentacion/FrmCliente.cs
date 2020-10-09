@@ -33,6 +33,8 @@ namespace SistemaVentas.Presentacion
                 if (dt.Rows.Count > 0)
                 {
                     lblNoSeEncontraronDatos.Visible = false;
+                    dgvClientes_CellClick(null, null);
+
                 }
                 else
                 {
@@ -71,6 +73,12 @@ namespace SistemaVentas.Presentacion
             btnEliminar.Visible = !b;
 
             dgvClientes.Enabled = !b;
+
+            txtNombre.Enabled = b;
+            txtApellido.Enabled = b;
+            txtDni.Enabled = b;
+            txtDomicilio.Enabled = b;
+            txtTelefono.Enabled = b;
 
 
         }
@@ -119,16 +127,20 @@ namespace SistemaVentas.Presentacion
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             MostrarGuardarCancelar(false);
+            dgvClientes_CellClick(null, null);
         }
 
         private void dgvClientes_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            dgvClientes.CurrentRow.Cells[1].Value.ToString();
-            txtNombre.Text = dgvClientes.CurrentRow.Cells[2].Value.ToString();
-            txtApellido.Text = dgvClientes.CurrentRow.Cells[3].Value.ToString();
-            txtTelefono.Text = dgvClientes.CurrentRow.Cells[4].Value.ToString();
-            txtDni.Text = dgvClientes.CurrentRow.Cells[5].Value.ToString();
-            txtDomicilio.Text = dgvClientes.CurrentRow.Cells[6].Value.ToString();
+            if (dgvClientes.CurrentRow != null)
+            {
+                txtId.Text = dgvClientes.CurrentRow.Cells[1].Value.ToString();
+                txtNombre.Text = dgvClientes.CurrentRow.Cells[2].Value.ToString();
+                txtApellido.Text = dgvClientes.CurrentRow.Cells[3].Value.ToString();
+                txtTelefono.Text = dgvClientes.CurrentRow.Cells[4].Value.ToString();
+                txtDni.Text = dgvClientes.CurrentRow.Cells[5].Value.ToString();
+                txtDomicilio.Text = dgvClientes.CurrentRow.Cells[6].Value.ToString();
+            }
         }
     }         
     

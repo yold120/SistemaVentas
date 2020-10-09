@@ -67,6 +67,7 @@ namespace SistemaVentas.Presentacion
             this.Eliminar});
             this.dgvClientes.Location = new System.Drawing.Point(11, 58);
             this.dgvClientes.Name = "dgvClientes";
+            this.dgvClientes.ReadOnly = true;
             this.dgvClientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvClientes.Size = new System.Drawing.Size(602, 293);
             this.dgvClientes.TabIndex = 3;
