@@ -37,5 +37,21 @@ namespace SistemaVentas.Datos
             return Convert.ToInt32(FDBHelper.ExecuteScalar("usp_Data_FCliente_Insertar", dbParams));
 
         }
+        public static int Actualizar(Cliente cliente)
+        {
+            SqlParameter[] dbParams = new SqlParameter[]
+                {
+                    FDBHelper.MakeParam("@Id",SqlDbType.Int,0,cliente.Id),
+
+                    FDBHelper.MakeParam("@Nombre",SqlDbType.VarChar,0,cliente.Nombre),
+                    FDBHelper.MakeParam("@Apellido",SqlDbType.VarChar,0,cliente.Apellido),
+                    FDBHelper.MakeParam("@Dni",SqlDbType.VarChar,0,cliente.Dni),
+                    FDBHelper.MakeParam("@Domicilio",SqlDbType.VarChar,0,cliente.Domicilio),
+                    FDBHelper.MakeParam("@Telefono",SqlDbType.VarChar,0,cliente.Telefono)
+
+                };
+            return Convert.ToInt32(FDBHelper.ExecuteScalar("usp_Data_FCliente_Actualizar", dbParams));
+
+        }
     }
 }

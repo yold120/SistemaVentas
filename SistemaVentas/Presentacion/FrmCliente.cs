@@ -83,22 +83,75 @@ namespace SistemaVentas.Presentacion
 
         }
 
+        public string ValidarDatos()
+        {
+            string Resultado = "";
+            if (txtNombre.Text == "")
+            {
+                Resultado = Resultado + "\n Nombres";//la \n es un enter
+            }
+            if (txtApellido.Text=="")
+            {
+                Resultado = Resultado + "\n Apellidos";
+            }
+
+            return Resultado;
+        }
+
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             try
             {
-                Cliente cliente = new Cliente();
-                cliente.Nombre = txtNombre.Text;
-                cliente.Apellido = txtApellido.Text;
-                cliente.Domicilio = txtDomicilio.Text;
-                cliente.Dni = Convert.ToInt32(txtDni.Text);
-                cliente.Telefono = txtTelefono.Text;
+                string sResultado = ValidarDatos();
 
-                if (FCliente.Insertar(cliente) > 0)
+
+                if(sResultado =="")
+
                 {
-                    MessageBox.Show("Datos Insertados Correctamente");
-                    FrmCliente_Load(null, null);
+                    if (txtId.Text == "")
+                    {
+                        Cliente cliente = new Cliente();
+                        cliente.Nombre = txtNombre.Text;
+                        cliente.Apellido = txtApellido.Text;
+                        cliente.Domicilio = txtDomicilio.Text;
+                        cliente.Dni = Convert.ToInt32(txtDni.Text);
+                        cliente.Telefono = txtTelefono.Text;
+
+                        if (FCliente.Insertar(cliente) > 0)
+                        {
+                            MessageBox.Show("Datos Insertados Correctamente");
+                            FrmCliente_Load(null, null);
+                        }
+
+                    }
+                    else
+                    {
+                        Cliente cliente = new Cliente();
+                        cliente.Id = Convert.ToInt32(txtId.Text);
+                        cliente.Nombre = txtNombre.Text;
+                        cliente.Apellido = txtApellido.Text;
+                        cliente.Domicilio = txtDomicilio.Text;
+                        cliente.Dni = Convert.ToInt32(txtDni.Text);
+                        cliente.Telefono = txtTelefono.Text;
+
+                        if (FCliente.Actualizar(cliente) == 1)
+                        {
+                            MessageBox.Show("Datos Modificados Correctamente");
+                            FrmCliente_Load(null, null);
+                        }
+                    }
+
                 }
+                else
+                {
+                    MessageBox.Show("Faltan cargar Datos: " + sResultado);
+                }
+
+
+
+                
+            
+               
             }
             catch (Exception ex)
             {
@@ -116,7 +169,7 @@ namespace SistemaVentas.Presentacion
             txtDni.Text = "";
             txtTelefono.Text = ""; 
             txtDomicilio.Text = "";
-            
+
         }
 
         private void btnEditar_Click(object sender, EventArgs e)
