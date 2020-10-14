@@ -72,11 +72,13 @@ namespace SistemaVentas.Presentacion
             this.dgvClientes.Size = new System.Drawing.Size(602, 293);
             this.dgvClientes.TabIndex = 3;
             this.dgvClientes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvClientes_CellClick);
+            this.dgvClientes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvClientes_CellContentClick);
             // 
             // Eliminar
             // 
             this.Eliminar.HeaderText = "Eliminar";
             this.Eliminar.Name = "Eliminar";
+            this.Eliminar.ReadOnly = true;
             // 
             // txtBuscar
             // 
@@ -84,6 +86,7 @@ namespace SistemaVentas.Presentacion
             this.txtBuscar.Name = "txtBuscar";
             this.txtBuscar.Size = new System.Drawing.Size(446, 20);
             this.txtBuscar.TabIndex = 2;
+            this.txtBuscar.TextChanged += new System.EventHandler(this.txtBuscar_TextChanged);
             // 
             // cmbBuscar
             // 
@@ -98,6 +101,8 @@ namespace SistemaVentas.Presentacion
             this.cmbBuscar.Name = "cmbBuscar";
             this.cmbBuscar.Size = new System.Drawing.Size(139, 21);
             this.cmbBuscar.TabIndex = 1;
+            this.cmbBuscar.Text = "Nombre";
+            this.cmbBuscar.SelectedIndexChanged += new System.EventHandler(this.cmbBuscar_SelectedIndexChanged);
             // 
             // lblNoSeEncontraronDatos
             // 
@@ -130,6 +135,7 @@ namespace SistemaVentas.Presentacion
             this.btnEliminar.TabIndex = 7;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // groupBox2
             // 
@@ -292,6 +298,7 @@ namespace SistemaVentas.Presentacion
             this.txtId.Name = "txtId";
             this.txtId.Size = new System.Drawing.Size(155, 20);
             this.txtId.TabIndex = 2;
+            this.txtId.TextChanged += new System.EventHandler(this.txtId_TextChanged);
             // 
             // FrmCliente
             // 

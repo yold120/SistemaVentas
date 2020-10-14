@@ -52,10 +52,6 @@ namespace SistemaVentas.Presentacion
             }
         }
 
-        private void dgvClientes_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
 
         private void Nuevo_Click(object sender, EventArgs e)
         {
@@ -74,6 +70,7 @@ namespace SistemaVentas.Presentacion
 
             dgvClientes.Enabled = !b;
 
+            
             txtNombre.Enabled = b;
             txtApellido.Enabled = b;
             txtDni.Enabled = b;
@@ -194,6 +191,87 @@ namespace SistemaVentas.Presentacion
                 txtDni.Text = dgvClientes.CurrentRow.Cells[5].Value.ToString();
                 txtDomicilio.Text = dgvClientes.CurrentRow.Cells[6].Value.ToString();
             }
+        }
+
+        private void dgvClientes_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == dgvClientes.Columns["Eliminar"].Index)
+            {
+                DataGridViewCheckBoxCell chkEliminar =
+                    (DataGridViewCheckBoxCell)dgvClientes.Rows[e.RowIndex].Cells["Eliminar"];
+                chkEliminar.Value = !Convert.ToBoolean(chkEliminar.Value);
+            }
+                
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if(MessageBox.Show("Realmente desea eliminar los clientes seleccionados?",
+                    "Eliminacion de Cliente",MessageBoxButtons.OKCancel,MessageBoxIcon.Question) == DialogResult.OK)
+                {
+                    foreach (DataGridViewRow row in dgvClientes.Rows)
+                    {
+                        if (Convert.ToBoolean(row.Cells["Eliminar"].Value))
+                        {
+                            Cliente cliente = new Cliente();
+                            cliente.Id = Convert.ToInt32(row.Cells["Id"].Value);
+                            if (FCliente.Eliminar(cliente) != 1)
+                            {
+                                MessageBox.Show("El cliente no pudo ser eliminado",
+                                    "Eliminacion de Cliente", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            }
+
+                        }
+                    }
+
+                    FrmCliente_Load(null, null);
+
+                }
+
+               
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + ex.StackTrace);
+            }
+        }
+
+        private void txtBuscar_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                DataView dv = new DataView(dt.Copy());
+                dv.RowFilter = cmbBuscar.Text + " Like '" + txtBuscar.Text + "%'";
+
+                dgvClientes.DataSource = dv;
+
+                if (dv.Count == 0)
+                {
+                    lblNoSeEncontraronDatos.Visible = true;
+                }
+                else
+                {
+                    lblNoSeEncontraronDatos.Visible = false;
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + ex.StackTrace);
+            }
+        }
+
+        private void txtId_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmbBuscar_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }         
     
