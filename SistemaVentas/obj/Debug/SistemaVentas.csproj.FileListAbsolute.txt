@@ -8,3 +8,4 @@ C:\Users\YOLDANY\source\repos\SistemaVentas\SistemaVentas\obj\Debug\SistemaVenta
 C:\Users\YOLDANY\source\repos\SistemaVentas\SistemaVentas\obj\Debug\SistemaVentas.exe
 C:\Users\YOLDANY\source\repos\SistemaVentas\SistemaVentas\obj\Debug\SistemaVentas.pdb
 C:\Users\YOLDANY\source\repos\SistemaVentas\SistemaVentas\obj\Debug\SistemaVentas.csproj.CoreCompileInputs.cache
+C:\Users\YOLDANY\source\repos\SistemaVentas\SistemaVentas\obj\Debug\SistemaVentas.Presentacion.frmCategoria.resources
