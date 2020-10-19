@@ -9,3 +9,14 @@ C:\Users\YOLDANY\source\repos\SistemaVentas\SistemaVentas\obj\Debug\SistemaVenta
 C:\Users\YOLDANY\source\repos\SistemaVentas\SistemaVentas\obj\Debug\SistemaVentas.pdb
 C:\Users\YOLDANY\source\repos\SistemaVentas\SistemaVentas\obj\Debug\SistemaVentas.csproj.CoreCompileInputs.cache
 C:\Users\YOLDANY\source\repos\SistemaVentas\SistemaVentas\obj\Debug\SistemaVentas.Presentacion.frmCategoria.resources
+C:\Users\YC-Tegnology\Source\Repos\SistemaVentas\SistemaVentas\bin\Debug\SistemaVentas.exe.config
+C:\Users\YC-Tegnology\Source\Repos\SistemaVentas\SistemaVentas\bin\Debug\SistemaVentas.exe
+C:\Users\YC-Tegnology\Source\Repos\SistemaVentas\SistemaVentas\bin\Debug\SistemaVentas.pdb
+C:\Users\YC-Tegnology\Source\Repos\SistemaVentas\SistemaVentas\obj\Debug\SistemaVentas.csprojAssemblyReference.cache
+C:\Users\YC-Tegnology\Source\Repos\SistemaVentas\SistemaVentas\obj\Debug\SistemaVentas.Presentacion.frmCategoria.resources
+C:\Users\YC-Tegnology\Source\Repos\SistemaVentas\SistemaVentas\obj\Debug\SistemaVentas.Presentacion.FrmCliente.resources
+C:\Users\YC-Tegnology\Source\Repos\SistemaVentas\SistemaVentas\obj\Debug\SistemaVentas.Properties.Resources.resources
+C:\Users\YC-Tegnology\Source\Repos\SistemaVentas\SistemaVentas\obj\Debug\SistemaVentas.csproj.GenerateResource.cache
+C:\Users\YC-Tegnology\Source\Repos\SistemaVentas\SistemaVentas\obj\Debug\SistemaVentas.csproj.CoreCompileInputs.cache
+C:\Users\YC-Tegnology\Source\Repos\SistemaVentas\SistemaVentas\obj\Debug\SistemaVentas.exe
+C:\Users\YC-Tegnology\Source\Repos\SistemaVentas\SistemaVentas\obj\Debug\SistemaVentas.pdb
