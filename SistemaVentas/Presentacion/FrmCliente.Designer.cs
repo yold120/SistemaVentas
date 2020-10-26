@@ -112,6 +112,7 @@ namespace SistemaVentas.Presentacion
             this.lblNoSeEncontraronDatos.Size = new System.Drawing.Size(127, 13);
             this.lblNoSeEncontraronDatos.TabIndex = 4;
             this.lblNoSeEncontraronDatos.Text = "No se Encontraron Datos";
+            this.lblNoSeEncontraronDatos.Click += new System.EventHandler(this.lblNoSeEncontraronDatos_Click);
             // 
             // groupBox1
             // 
@@ -126,6 +127,7 @@ namespace SistemaVentas.Presentacion
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Listado de Clientes";
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter_1);
             // 
             // btnEliminar
             // 
@@ -161,6 +163,7 @@ namespace SistemaVentas.Presentacion
             this.groupBox2.TabIndex = 6;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Datos de Clientes";
+            this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
             // 
             // btnCancelar
             // 
@@ -210,6 +213,7 @@ namespace SistemaVentas.Presentacion
             this.label6.Size = new System.Drawing.Size(52, 13);
             this.label6.TabIndex = 4;
             this.label6.Text = "Telefono:";
+            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // label5
             // 
@@ -219,6 +223,7 @@ namespace SistemaVentas.Presentacion
             this.label5.Size = new System.Drawing.Size(52, 13);
             this.label5.TabIndex = 4;
             this.label5.Text = "Domicilio:";
+            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // label4
             // 
@@ -228,6 +233,7 @@ namespace SistemaVentas.Presentacion
             this.label4.Size = new System.Drawing.Size(26, 13);
             this.label4.TabIndex = 4;
             this.label4.Text = "Dni:";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // label3
             // 
@@ -237,6 +243,7 @@ namespace SistemaVentas.Presentacion
             this.label3.Size = new System.Drawing.Size(52, 13);
             this.label3.TabIndex = 4;
             this.label3.Text = "Apellidos:";
+            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // label2
             // 
@@ -246,6 +253,7 @@ namespace SistemaVentas.Presentacion
             this.label2.Size = new System.Drawing.Size(52, 13);
             this.label2.TabIndex = 4;
             this.label2.Text = "Nombres:";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label1
             // 
@@ -255,6 +263,7 @@ namespace SistemaVentas.Presentacion
             this.label1.Size = new System.Drawing.Size(21, 13);
             this.label1.TabIndex = 4;
             this.label1.Text = "ID:";
+            this.label1.Click += new System.EventHandler(this.label1_Click_1);
             // 
             // txtTelefono
             // 
@@ -262,6 +271,7 @@ namespace SistemaVentas.Presentacion
             this.txtTelefono.Name = "txtTelefono";
             this.txtTelefono.Size = new System.Drawing.Size(155, 20);
             this.txtTelefono.TabIndex = 2;
+            this.txtTelefono.TextChanged += new System.EventHandler(this.txtTelefono_TextChanged);
             // 
             // txtDomicilio
             // 
@@ -269,6 +279,7 @@ namespace SistemaVentas.Presentacion
             this.txtDomicilio.Name = "txtDomicilio";
             this.txtDomicilio.Size = new System.Drawing.Size(155, 20);
             this.txtDomicilio.TabIndex = 2;
+            this.txtDomicilio.TextChanged += new System.EventHandler(this.txtDomicilio_TextChanged);
             // 
             // txtDni
             // 
@@ -276,6 +287,7 @@ namespace SistemaVentas.Presentacion
             this.txtDni.Name = "txtDni";
             this.txtDni.Size = new System.Drawing.Size(155, 20);
             this.txtDni.TabIndex = 2;
+            this.txtDni.TextChanged += new System.EventHandler(this.txtDni_TextChanged);
             // 
             // txtApellido
             // 
@@ -283,6 +295,7 @@ namespace SistemaVentas.Presentacion
             this.txtApellido.Name = "txtApellido";
             this.txtApellido.Size = new System.Drawing.Size(155, 20);
             this.txtApellido.TabIndex = 2;
+            this.txtApellido.TextChanged += new System.EventHandler(this.txtApellido_TextChanged);
             // 
             // txtNombre
             // 
@@ -290,6 +303,7 @@ namespace SistemaVentas.Presentacion
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(155, 20);
             this.txtNombre.TabIndex = 2;
+            this.txtNombre.TextChanged += new System.EventHandler(this.txtNombre_TextChanged);
             // 
             // txtId
             // 
