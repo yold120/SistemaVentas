@@ -53,11 +53,7 @@ namespace SistemaVentas.Presentacion
         }
 
 
-        private void Nuevo_Click(object sender, EventArgs e)
-        {
-
-           
-        }
+        
 
 
         public void MostrarGuardarCancelar(bool b)
