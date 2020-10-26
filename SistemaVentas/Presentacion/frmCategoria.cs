@@ -21,7 +21,10 @@ namespace SistemaVentas.Presentacion
             InitializeComponent();
         }
 
-       
+       public void SetFlag(String valor)
+        {
+            txtFlag.Text = valor;
+        }
 
         private void frmCategoria_Load(object sender, EventArgs e)
         {
@@ -65,7 +68,7 @@ namespace SistemaVentas.Presentacion
                 if (sResultado == "")
 
                 {
-                    if (txtId.Text == "")
+                    if (txtFlag.Text == "")
                     {
                         Categoria categoria = new Categoria();
                         categoria.Descripcion = txtNombre.Text;
@@ -81,7 +84,7 @@ namespace SistemaVentas.Presentacion
                     else
                     {
                         Categoria Categoria = new Categoria();
-                        Categoria.Id = Convert.ToInt32(txtId.Text);
+                        Categoria.Id = Convert.ToInt32(txtFlag.Text);
                         Categoria.Descripcion = txtNombre.Text;
                        
 
@@ -121,7 +124,7 @@ namespace SistemaVentas.Presentacion
         private void btnNuevo_Click(object sender, EventArgs e)
         {
             MostrarGuardarCancelar(true);
-            txtId.Text = "";
+            txtFlag.Text = "";
             txtNombre.Text = "";
            
         }
@@ -205,7 +208,7 @@ namespace SistemaVentas.Presentacion
         {
             if (dgvCategoria.CurrentRow != null)
             {
-                txtId.Text = dgvCategoria.CurrentRow.Cells[1].Value.ToString();
+                txtFlag.Text = dgvCategoria.CurrentRow.Cells[1].Value.ToString();
                 txtNombre.Text = dgvCategoria.CurrentRow.Cells[2].Value.ToString();
                 
             }
@@ -241,6 +244,24 @@ namespace SistemaVentas.Presentacion
 
         }
 
-       
+        private void dgvCategoria_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            FrmProducto frmProd = FrmProducto.GetInscance();
+
+            if (dgvCategoria.CurrentRow != null)
+            {
+                frmProd.SetCategoria(dgvCategoria.CurrentRow.Cells[1].Value.ToString(),
+                    dgvCategoria.CurrentRow.Cells[2].Value.ToString());
+                frmProd.Show();
+                Close();
+
+            }
+        }
+
+
+
+
+
+
     }
 }

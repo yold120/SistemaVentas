@@ -11,15 +11,30 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using SistemaVentas.Datos;
 using SistemaVentas.Entidades;
+using SistemaVentas.Properties;
 
 namespace SistemaVentas.Presentacion
 {
     public partial class FrmProducto : Form
     {
         private static DataTable dt = new DataTable();
+        private static FrmProducto _instancia;
         public FrmProducto()
         {
             InitializeComponent();
+        }
+
+        public static FrmProducto GetInscance()
+        {
+            if (_instancia == null)
+                _instancia = new FrmProducto();
+            return _instancia;
+        }
+
+        public void SetCategoria (String id, string descripcion)
+        {
+            txtCategoriaId.Text = id;
+            txtCategoriaDescripcion.Text = descripcion;
         }
 
         public string ValidarDatos()
@@ -122,23 +137,27 @@ namespace SistemaVentas.Presentacion
 
         private void btnCambiar_Click(object sender, EventArgs e)
         {
-            if(dialogo.ShowDialog()==DialogResult.Ok)
+            if(dialogo.ShowDialog() == DialogResult.OK)
             {
+                Imagen.BackgroundImage = null;
                 Imagen.Image = new Bitmap(dialogo.FileName);
                 Imagen.SizeMode = PictureBoxSizeMode.StretchImage;
-
 
             }
         }
 
         private void btnQuitar_Click(object sender, EventArgs e)
         {
-
+            Imagen.BackgroundImage = Resources.Imagen_Transparente;
+            Imagen.Image = null;
+            Imagen.SizeMode = PictureBoxSizeMode.StretchImage;
         }
 
         private void btnBuscarCategoria_Click(object sender, EventArgs e)
         {
-
+            frmCategoria frmcate = new frmCategoria();
+            frmcate.SetFlag("1");
+            frmcate.ShowDialog();
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
@@ -258,6 +277,11 @@ namespace SistemaVentas.Presentacion
             txtNombre.Enabled = b;
             
 
+
+        }
+
+        private void txtBuscar_TextChanged(object sender, EventArgs e)
+        {
 
         }
     }

@@ -17,7 +17,10 @@ namespace SistemaVentas
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FrmCliente());
+            Application.Run(FrmProducto.GetInscance());
+                            //FrmProducto.GetInscance
+                            //new FrmCliente
+                            //new frmCategoria
         }
     }
 }

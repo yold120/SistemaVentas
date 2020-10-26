@@ -36,7 +36,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.txtNombre = new System.Windows.Forms.TextBox();
-            this.txtId = new System.Windows.Forms.TextBox();
+            this.txtFlag = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.lblNoSeEncontraronDatos = new System.Windows.Forms.Label();
             this.cmbBuscar = new System.Windows.Forms.ComboBox();
@@ -58,7 +58,6 @@
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.txtNombre);
-            this.groupBox2.Controls.Add(this.txtId);
             this.groupBox2.Location = new System.Drawing.Point(14, 30);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(259, 416);
@@ -131,13 +130,14 @@
             this.txtNombre.Size = new System.Drawing.Size(155, 20);
             this.txtNombre.TabIndex = 2;
             // 
-            // txtId
+            // txtFlag
             // 
-            this.txtId.Enabled = false;
-            this.txtId.Location = new System.Drawing.Point(82, 58);
-            this.txtId.Name = "txtId";
-            this.txtId.Size = new System.Drawing.Size(155, 20);
-            this.txtId.TabIndex = 2;
+            this.txtFlag.Enabled = false;
+            this.txtFlag.Location = new System.Drawing.Point(182, 4);
+            this.txtFlag.Name = "txtFlag";
+            this.txtFlag.Size = new System.Drawing.Size(42, 20);
+            this.txtFlag.TabIndex = 2;
+            this.txtFlag.Visible = false;
             // 
             // groupBox1
             // 
@@ -197,6 +197,7 @@
             this.dgvCategoria.TabIndex = 3;
             this.dgvCategoria.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCategoria_CellClick);
             this.dgvCategoria.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCategoria_CellContentClick);
+            this.dgvCategoria.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCategoria_CellContentDoubleClick);
             // 
             // Eliminar
             // 
@@ -219,6 +220,7 @@
             this.ClientSize = new System.Drawing.Size(925, 476);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.txtFlag);
             this.Name = "frmCategoria";
             this.Text = "frmMantenimiento de Categorias";
             this.Load += new System.EventHandler(this.frmCategoria_Load);
@@ -228,6 +230,7 @@
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCategoria)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -241,7 +244,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtNombre;
-        private System.Windows.Forms.TextBox txtId;
+        private System.Windows.Forms.TextBox txtFlag;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label lblNoSeEncontraronDatos;
         private System.Windows.Forms.ComboBox cmbBuscar;
