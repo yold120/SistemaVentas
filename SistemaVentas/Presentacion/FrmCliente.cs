@@ -76,6 +76,11 @@ namespace SistemaVentas.Presentacion
 
         }
 
+        internal void SetFlag(string band)
+        {
+            txtFlag.Text = band;
+        }
+
         public string ValidarDatos()
         {
             string Resultado = "";
@@ -338,6 +343,20 @@ namespace SistemaVentas.Presentacion
         private void txtNombre_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void dgvClientes_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            FrmVentas frmVentas = FrmVentas.GetInscance();
+
+            if (dgvClientes.CurrentRow != null)
+            {
+                frmVentas.SetClientes(dgvClientes.CurrentRow.Cells[1].Value.ToString(),
+                    dgvClientes.CurrentRow.Cells[2].Value.ToString());
+                frmVentas.Show();
+                Close();
+
+            }
         }
     }         
     

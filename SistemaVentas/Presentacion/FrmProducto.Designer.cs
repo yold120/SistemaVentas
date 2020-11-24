@@ -62,6 +62,7 @@
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.txtCategoriaDescripcion = new System.Windows.Forms.TextBox();
             this.dialogo = new System.Windows.Forms.OpenFileDialog();
+            this.txtFlag = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProductos)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -128,6 +129,7 @@
             // 
             // txtCategoriaId
             // 
+            this.txtCategoriaId.Enabled = false;
             this.txtCategoriaId.Location = new System.Drawing.Point(91, 52);
             this.txtCategoriaId.Name = "txtCategoriaId";
             this.txtCategoriaId.Size = new System.Drawing.Size(50, 20);
@@ -143,7 +145,7 @@
             // 
             // btnEliminar
             // 
-            this.btnEliminar.Location = new System.Drawing.Point(11, 283);
+            this.btnEliminar.Location = new System.Drawing.Point(360, 411);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(75, 23);
             this.btnEliminar.TabIndex = 7;
@@ -155,12 +157,11 @@
             // 
             this.groupBox1.Controls.Add(this.lblNoSeEncontraronDatos);
             this.groupBox1.Controls.Add(this.cmbBuscar);
-            this.groupBox1.Controls.Add(this.btnEliminar);
             this.groupBox1.Controls.Add(this.dgvProductos);
             this.groupBox1.Controls.Add(this.txtBuscar);
             this.groupBox1.Location = new System.Drawing.Point(360, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(454, 329);
+            this.groupBox1.Size = new System.Drawing.Size(449, 393);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Listado deProductos";
@@ -168,7 +169,7 @@
             // lblNoSeEncontraronDatos
             // 
             this.lblNoSeEncontraronDatos.AutoSize = true;
-            this.lblNoSeEncontraronDatos.Location = new System.Drawing.Point(202, 149);
+            this.lblNoSeEncontraronDatos.Location = new System.Drawing.Point(149, 214);
             this.lblNoSeEncontraronDatos.Name = "lblNoSeEncontraronDatos";
             this.lblNoSeEncontraronDatos.Size = new System.Drawing.Size(127, 13);
             this.lblNoSeEncontraronDatos.TabIndex = 4;
@@ -200,10 +201,11 @@
             this.dgvProductos.Name = "dgvProductos";
             this.dgvProductos.ReadOnly = true;
             this.dgvProductos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvProductos.Size = new System.Drawing.Size(438, 219);
+            this.dgvProductos.Size = new System.Drawing.Size(418, 341);
             this.dgvProductos.TabIndex = 3;
             this.dgvProductos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProductos_CellClick);
             this.dgvProductos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProductos_CellContentClick);
+            this.dgvProductos.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProductos_CellContentDoubleClick);
             // 
             // Eliminar
             // 
@@ -215,12 +217,13 @@
             // 
             this.txtBuscar.Location = new System.Drawing.Point(167, 20);
             this.txtBuscar.Name = "txtBuscar";
-            this.txtBuscar.Size = new System.Drawing.Size(353, 20);
+            this.txtBuscar.Size = new System.Drawing.Size(262, 20);
             this.txtBuscar.TabIndex = 2;
             this.txtBuscar.TextChanged += new System.EventHandler(this.txtBuscar_TextChanged);
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.txtFlag);
             this.groupBox2.Controls.Add(this.txtFechaVencimiento);
             this.groupBox2.Controls.Add(this.Imagen);
             this.groupBox2.Controls.Add(this.btnBuscarCategoria);
@@ -248,13 +251,14 @@
             this.groupBox2.Controls.Add(this.txtId);
             this.groupBox2.Location = new System.Drawing.Point(0, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(339, 446);
+            this.groupBox2.Size = new System.Drawing.Size(339, 428);
             this.groupBox2.TabIndex = 8;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Datos de Productos";
             // 
             // txtFechaVencimiento
             // 
+            this.txtFechaVencimiento.Enabled = false;
             this.txtFechaVencimiento.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.txtFechaVencimiento.Location = new System.Drawing.Point(133, 208);
             this.txtFechaVencimiento.Name = "txtFechaVencimiento";
@@ -265,9 +269,10 @@
             // 
             this.Imagen.BackgroundImage = global::SistemaVentas.Properties.Resources.Imagen_Transparente;
             this.Imagen.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Imagen.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Imagen.Location = new System.Drawing.Point(23, 234);
             this.Imagen.Name = "Imagen";
-            this.Imagen.Size = new System.Drawing.Size(170, 120);
+            this.Imagen.Size = new System.Drawing.Size(180, 120);
             this.Imagen.TabIndex = 8;
             this.Imagen.TabStop = false;
             // 
@@ -283,9 +288,9 @@
             // 
             // btnQuitar
             // 
-            this.btnQuitar.Location = new System.Drawing.Point(209, 283);
+            this.btnQuitar.Location = new System.Drawing.Point(209, 303);
             this.btnQuitar.Name = "btnQuitar";
-            this.btnQuitar.Size = new System.Drawing.Size(107, 23);
+            this.btnQuitar.Size = new System.Drawing.Size(107, 30);
             this.btnQuitar.TabIndex = 7;
             this.btnQuitar.Text = "Quitar Imagen";
             this.btnQuitar.UseVisualStyleBackColor = true;
@@ -293,9 +298,9 @@
             // 
             // btnCambiar
             // 
-            this.btnCambiar.Location = new System.Drawing.Point(209, 242);
+            this.btnCambiar.Location = new System.Drawing.Point(209, 251);
             this.btnCambiar.Name = "btnCambiar";
-            this.btnCambiar.Size = new System.Drawing.Size(107, 23);
+            this.btnCambiar.Size = new System.Drawing.Size(107, 32);
             this.btnCambiar.TabIndex = 7;
             this.btnCambiar.Text = "Cambiar Imagen";
             this.btnCambiar.UseVisualStyleBackColor = true;
@@ -357,6 +362,7 @@
             // 
             // txtPrecioVenta
             // 
+            this.txtPrecioVenta.Enabled = false;
             this.txtPrecioVenta.Location = new System.Drawing.Point(133, 182);
             this.txtPrecioVenta.Name = "txtPrecioVenta";
             this.txtPrecioVenta.Size = new System.Drawing.Size(146, 20);
@@ -364,6 +370,7 @@
             // 
             // txtPrecioCompra
             // 
+            this.txtPrecioCompra.Enabled = false;
             this.txtPrecioCompra.Location = new System.Drawing.Point(133, 156);
             this.txtPrecioCompra.Name = "txtPrecioCompra";
             this.txtPrecioCompra.Size = new System.Drawing.Size(146, 20);
@@ -371,6 +378,7 @@
             // 
             // txtStock
             // 
+            this.txtStock.Enabled = false;
             this.txtStock.Location = new System.Drawing.Point(133, 130);
             this.txtStock.Name = "txtStock";
             this.txtStock.Size = new System.Drawing.Size(146, 20);
@@ -378,6 +386,7 @@
             // 
             // txtDescripcion
             // 
+            this.txtDescripcion.Enabled = false;
             this.txtDescripcion.Location = new System.Drawing.Point(91, 104);
             this.txtDescripcion.Name = "txtDescripcion";
             this.txtDescripcion.Size = new System.Drawing.Size(188, 20);
@@ -385,6 +394,7 @@
             // 
             // txtNombre
             // 
+            this.txtNombre.Enabled = false;
             this.txtNombre.Location = new System.Drawing.Point(90, 78);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(189, 20);
@@ -392,6 +402,7 @@
             // 
             // txtCategoriaDescripcion
             // 
+            this.txtCategoriaDescripcion.Enabled = false;
             this.txtCategoriaDescripcion.Location = new System.Drawing.Point(147, 52);
             this.txtCategoriaDescripcion.Name = "txtCategoriaDescripcion";
             this.txtCategoriaDescripcion.Size = new System.Drawing.Size(99, 20);
@@ -401,13 +412,22 @@
             // 
             this.dialogo.FileName = "openFileDialog1";
             // 
+            // txtFlag
+            // 
+            this.txtFlag.Location = new System.Drawing.Point(295, 19);
+            this.txtFlag.Name = "txtFlag";
+            this.txtFlag.Size = new System.Drawing.Size(38, 20);
+            this.txtFlag.TabIndex = 9;
+            this.txtFlag.Visible = false;
+            // 
             // FrmProducto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(821, 483);
+            this.ClientSize = new System.Drawing.Size(814, 447);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.btnEliminar);
             this.Name = "FrmProducto";
             this.Text = "Mantemiento de Productos";
             this.Load += new System.EventHandler(this.FrmProducto_Load);
@@ -457,5 +477,6 @@
         private System.Windows.Forms.TextBox txtNombre;
         private System.Windows.Forms.DateTimePicker txtFechaVencimiento;
         private System.Windows.Forms.OpenFileDialog dialogo;
+        private System.Windows.Forms.TextBox txtFlag;
     }
 }

@@ -31,6 +31,11 @@ namespace SistemaVentas.Presentacion
             return _instancia;
         }
 
+        public void SetFlag(string sValor)
+        {
+            txtFlag.Text = sValor;
+        }
+
         public void SetCategoria (String id, string descripcion)
         {
             txtCategoriaId.Text = id;
@@ -54,14 +59,11 @@ namespace SistemaVentas.Presentacion
             {
                 string sResultado = ValidarDatos();
 
-
                 if (sResultado == "")
-
                 {
                     if (txtId.Text == "")
                     {
                         Producto producto = new Producto();
-                        producto.Nombre = txtNombre.Text;
                         producto.Categoria.Id = Convert.ToInt32(txtCategoriaId.Text);
                         producto.Nombre = txtNombre.Text;
                         producto.Descripcion = txtDescripcion.Text;
@@ -70,6 +72,21 @@ namespace SistemaVentas.Presentacion
                         producto.PrecioVenta = Convert.ToDouble(txtPrecioVenta.Text);
                         producto.FechaVencimiento = txtFechaVencimiento.Value;
 
+                        MemoryStream ms = new MemoryStream();
+
+                        if (Imagen.Image != null)
+                        {
+                            Imagen.Image.Save(ms, Imagen.Image.RawFormat);
+                        }
+                        else
+                        {
+                            Imagen.Image = Resources.Imagen_Transparente;
+                            Imagen.Image.Save(ms, Imagen.Image.RawFormat);
+                        }
+
+                        producto.Imagen = ms.GetBuffer();
+
+
                         if (FProductos.Insertar(producto) > 0)
                         {
                             MessageBox.Show("Datos Insertados Correctamente");
@@ -77,11 +94,11 @@ namespace SistemaVentas.Presentacion
                         }
 
                     }
+
                     else
                     {
                         Producto producto = new Producto();
                         producto.Id = Convert.ToInt32(txtId.Text);
-                        producto.Nombre = txtNombre.Text;
                         producto.Categoria.Id = Convert.ToInt32(txtCategoriaId.Text);
                         producto.Nombre = txtNombre.Text;
                         producto.Descripcion = txtDescripcion.Text;
@@ -90,7 +107,23 @@ namespace SistemaVentas.Presentacion
                         producto.PrecioVenta = Convert.ToDouble(txtPrecioVenta.Text);
                         producto.FechaVencimiento = txtFechaVencimiento.Value;
 
-                        if (FProductos.Insertar(producto) == 1)
+                        MemoryStream ms = new MemoryStream();
+
+                        if (Imagen.Image != null)
+                        {
+                            Imagen.Image.Save(ms, Imagen.Image.RawFormat);
+                        }
+                        else
+                        {
+                            Imagen.Image = Resources.Imagen_Transparente;
+                            Imagen.Image.Save(ms, Imagen.Image.RawFormat);
+
+                        }
+
+                        producto.Imagen = ms.GetBuffer();
+
+
+                        if (FProductos.Actualizar(producto) == 1)
                         {
                             MessageBox.Show("Datos Insertados Correctamente");
                             FrmProducto_Load(null, null);
@@ -120,8 +153,19 @@ namespace SistemaVentas.Presentacion
         {
             MostrarGuardarCancelar(true);
             txtId.Text = "";
+            txtCategoriaDescripcion.Text = "";
             txtNombre.Text = "";
-            
+            txtCategoriaId.Text = "";
+            txtDescripcion.Text = "";
+            txtStock.Text = "";
+            txtPrecioCompra.Text = "";
+            txtPrecioVenta.Text = "";
+
+            //quitar imagen
+            Imagen.BackgroundImage = Resources.Imagen_Transparente;
+            Imagen.Image = null;
+            Imagen.SizeMode = PictureBoxSizeMode.StretchImage;
+
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -132,7 +176,7 @@ namespace SistemaVentas.Presentacion
 
         private void btnEditar_Click(object sender, EventArgs e)
         {
-
+            MostrarGuardarCancelar(true);
         }
 
         private void btnCambiar_Click(object sender, EventArgs e)
@@ -178,15 +222,12 @@ namespace SistemaVentas.Presentacion
                                 MessageBox.Show("El PRoducto no pudo ser eliminado",
                                     "Eliminacion de Producto", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             }
-
                         }
                     }
 
                     FrmProducto_Load(null, null);
 
                 }
-
-
             }
             catch (Exception ex)
             {
@@ -199,11 +240,11 @@ namespace SistemaVentas.Presentacion
         {
             if (dgvProductos.CurrentRow != null)
             {
-                //CategoriaDescripcion Id  CategoriaId Nombre  Descripcion Stock   
-                //PrecioCompra PrecioVenta FechaVencimiento Imagen
+                
 
                 txtId.Text = dgvProductos.CurrentRow.Cells["Id"].Value.ToString();
                 txtCategoriaDescripcion.Text = dgvProductos.CurrentRow.Cells["CategoriaDescripcion"].Value.ToString();
+                txtNombre.Text = dgvProductos.CurrentRow.Cells["Nombre"].Value.ToString();
                 txtCategoriaId.Text = dgvProductos.CurrentRow.Cells["CategoriaId"].Value.ToString();
                 txtDescripcion.Text = dgvProductos.CurrentRow.Cells["Descripcion"].Value.ToString();
                 txtStock.Text = dgvProductos.CurrentRow.Cells["Stock"].Value.ToString();
@@ -213,8 +254,9 @@ namespace SistemaVentas.Presentacion
 
                 //Cargar Imagen al Formulario
                 Imagen.BackgroundImage = null;
-                byte[] b = Encoding.Unicode.GetBytes(dgvProductos.CurrentRow.Cells["Imagen"].Value.ToString());
+                byte[] b = (byte[]) dgvProductos.CurrentRow.Cells["Imagen"].Value;
                 MemoryStream ms = new MemoryStream(b);
+                Imagen.Image = Image.FromStream(ms);
                 Imagen.SizeMode = PictureBoxSizeMode.StretchImage;
 
 
@@ -239,9 +281,11 @@ namespace SistemaVentas.Presentacion
                 DataSet ds = FProductos.GetAll();
                 dt = ds.Tables[0];
                 dgvProductos.DataSource = dt;
+                
 
                 if (dt.Rows.Count > 0)
                 {
+                    dgvProductos.Columns["Imagen"].Visible = false;
                     lblNoSeEncontraronDatos.Visible = false;
                     dgvProductos_CellClick(null, null);
 
@@ -273,8 +317,19 @@ namespace SistemaVentas.Presentacion
 
             dgvProductos.Enabled = !b;
 
+            btnCambiar.Visible = b;
+            btnQuitar.Visible = b;
+            btnBuscarCategoria.Visible = b;
 
             txtNombre.Enabled = b;
+            txtCategoriaDescripcion.Enabled = b;
+            txtCategoriaId.Enabled = b;
+            txtDescripcion.Enabled = b;
+            txtStock.Enabled = b;
+            txtPrecioCompra.Enabled = b;
+            txtPrecioVenta.Enabled = b;
+            txtFechaVencimiento.Enabled = b;
+
             
 
 
@@ -283,6 +338,32 @@ namespace SistemaVentas.Presentacion
         private void txtBuscar_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void dgvProductos_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (txtFlag.Text == "1")
+            {
+
+                FrmDetalleVenta frmDetVenta = FrmDetalleVenta.GetInstance();
+
+                if (dgvProductos.CurrentRow != null)
+                {
+                    Producto producto = new Producto();
+                    producto.Id = Convert.ToInt32(dgvProductos.CurrentRow.Cells["Id"].Value.ToString());
+                    producto.Nombre = dgvProductos.CurrentRow.Cells["Nombre"].Value.ToString();
+                    producto.Stock = Convert.ToDouble(dgvProductos.CurrentRow.Cells["Stock"].Value.ToString());
+                    producto.PrecioVenta = Convert.ToDouble(dgvProductos.CurrentRow.Cells["PrecioVenta"].Value.ToString());
+
+
+                    frmDetVenta.SetProducto(producto);
+                    frmDetVenta.Show();
+                    Close();
+
+                }
+
+
+            }
         }
     }
 }

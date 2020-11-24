@@ -54,6 +54,7 @@ namespace SistemaVentas.Presentacion
             this.txtApellido = new System.Windows.Forms.TextBox();
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.txtId = new System.Windows.Forms.TextBox();
+            this.txtFlag = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvClientes)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -73,6 +74,7 @@ namespace SistemaVentas.Presentacion
             this.dgvClientes.TabIndex = 3;
             this.dgvClientes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvClientes_CellClick);
             this.dgvClientes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvClientes_CellContentClick);
+            this.dgvClientes.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvClientes_CellContentDoubleClick);
             // 
             // Eliminar
             // 
@@ -314,6 +316,16 @@ namespace SistemaVentas.Presentacion
             this.txtId.TabIndex = 2;
             this.txtId.TextChanged += new System.EventHandler(this.txtId_TextChanged);
             // 
+            // txtFlag
+            // 
+            this.txtFlag.Enabled = false;
+            this.txtFlag.Location = new System.Drawing.Point(211, -1);
+            this.txtFlag.Name = "txtFlag";
+            this.txtFlag.Size = new System.Drawing.Size(44, 20);
+            this.txtFlag.TabIndex = 2;
+            this.txtFlag.Visible = false;
+            this.txtFlag.TextChanged += new System.EventHandler(this.txtId_TextChanged);
+            // 
             // FrmCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -322,6 +334,7 @@ namespace SistemaVentas.Presentacion
             this.ClientSize = new System.Drawing.Size(841, 353);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.txtFlag);
             this.Name = "FrmCliente";
             this.Text = "Mantenimiento de Clientes";
             this.Load += new System.EventHandler(this.FrmCliente_Load);
@@ -331,6 +344,7 @@ namespace SistemaVentas.Presentacion
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -369,5 +383,6 @@ namespace SistemaVentas.Presentacion
         private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Eliminar;
         private System.Windows.Forms.Button btnEditar;
+        private System.Windows.Forms.TextBox txtFlag;
     }
 }

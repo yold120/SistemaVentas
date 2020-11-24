@@ -30,7 +30,7 @@ namespace SistemaVentas.Entidades
 
         public Producto()
         {
-
+            _categoria = new Categoria();
         }
         public Producto(int id, Categoria categoria, string nombre, string descripcion, double stock, double precioCompra, double precioVenta, DateTime fechaVencimiento, byte[] imagen)
         {
